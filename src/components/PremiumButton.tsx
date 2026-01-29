@@ -1,8 +1,5 @@
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
+
+import { trackEvent } from "../utils/analytics"; 
 
 interface PremiumButtonProps {
   price: number;

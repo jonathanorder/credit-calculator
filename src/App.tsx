@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { PremiumButton } from "./components/PremiumButton";
 import "./App.css";
+import { trackEvent } from "./utils/analytics";
+
 
 type RiskLevel = "verde" | "amarillo" | "rojo";
 
@@ -16,16 +18,6 @@ function calcularRiesgo(porcentajeIngreso: number): RiskLevel {
   if (porcentajeIngreso <= 35) return "amarillo";
   return "rojo";
 }
-
-const trackEvent = (eventName: string, params?: Record<string, any>) => {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', eventName, params);
-  }
-};
-
-
-// En PremiumButton handleClick:
-trackEvent('premium_click', { precio: price });
 
 const App: React.FC = () => {
   const [pais, setPais] = useState<"AR" | "ES" | "OTRO">("AR");
