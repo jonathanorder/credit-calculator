@@ -17,6 +17,16 @@ function calcularRiesgo(porcentajeIngreso: number): RiskLevel {
   return "rojo";
 }
 
+const trackEvent = (eventName: string, params?: Record<string, any>) => {
+  if (typeof window !== 'undefined' && (window as any).gtag) {
+    (window as any).gtag('event', eventName, params);
+  }
+};
+
+
+// En PremiumButton handleClick:
+trackEvent('premium_click', { precio: price });
+
 const App: React.FC = () => {
   const [pais, setPais] = useState<"AR" | "ES" | "OTRO">("AR");
   const [ingreso, setIngreso] = useState<number>(0);
@@ -36,6 +46,12 @@ const App: React.FC = () => {
     const porcentajeIngreso = Math.round((totalCuota / ingreso) * 100);
     const nivelRiesgo = calcularRiesgo(porcentajeIngreso);
 
+    trackEvent('premium_click', { precio: 9.99 });
+    trackEvent('simulacion_completada', { 
+      riesgo: nivelRiesgo,
+      cuota: totalCuota,
+      porcentaje: porcentajeIngreso 
+    });
     setCuota(cuotaNueva);
     setPorcentaje(porcentajeIngreso);
     setRiesgo(nivelRiesgo);

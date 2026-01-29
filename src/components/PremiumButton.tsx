@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 interface PremiumButtonProps {
   price: number;
   label: string;
@@ -10,7 +16,10 @@ export const PremiumButton: React.FC<PremiumButtonProps> = ({
   description,
 }) => {
   const handleClick = () => {
-    // Reemplazá por TU LINK REAL de Stripe Payment Link
+     trackEvent('premium_button_click', { 
+        precio: price,
+        label 
+      });
     const checkoutUrl = "https://buy.stripe.com/test_4gM7sM3sV3evd6x3ltdnW01";
     window.open(checkoutUrl, "_blank", "noopener,noreferrer");
   };
