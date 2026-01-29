@@ -1,7 +1,3 @@
-import { loadStripe } from "@stripe/stripe-js";
-
-
-
 interface PremiumButtonProps {
   price: number;
   label: string;
@@ -13,9 +9,10 @@ export const PremiumButton: React.FC<PremiumButtonProps> = ({
   label,
   description,
 }) => {
-  const handleClick = async () => {
-    const checkoutUrl = "https://buy.stripe.com/test_4gM7sM3sV3evd6x3ltdnW01"; // ← CAMBIAR por tu link
-    window.open(checkoutUrl, "_blank");
+  const handleClick = () => {
+    // Reemplazá por TU LINK REAL de Stripe Payment Link
+    const checkoutUrl = "https://buy.stripe.com/test_4gM7sM3sV3evd6x3ltdnW01";
+    window.open(checkoutUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -28,3 +25,5 @@ export const PremiumButton: React.FC<PremiumButtonProps> = ({
     </button>
   );
 };
+
+
