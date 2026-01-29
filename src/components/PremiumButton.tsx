@@ -1,7 +1,5 @@
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_51RopFFJO2VOQiS5bPDDh7KKtwozJZEer9WZ8VSfVyHyvfbjjTMYMeqjRgFapT2qpYm24W1sHUc4sQmfPnc4Ev2U300YrhvBVqP");
-
 
 
 interface PremiumButtonProps {
@@ -16,7 +14,6 @@ export const PremiumButton: React.FC<PremiumButtonProps> = ({
   description,
 }) => {
   const handleClick = async () => {
-    // Stripe Checkout Link (creás este link en Stripe Dashboard)
     const checkoutUrl = "https://buy.stripe.com/test_4gM7sM3sV3evd6x3ltdnW01"; // ← CAMBIAR por tu link
     window.open(checkoutUrl, "_blank");
   };
