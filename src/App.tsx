@@ -37,16 +37,16 @@ const App: React.FC = () => {
     const totalCuota = deudaActual + cuotaNueva;
     const porcentajeIngreso = Math.round((totalCuota / ingreso) * 100);
     const nivelRiesgo = calcularRiesgo(porcentajeIngreso);
-
+   
+    setCuota(cuotaNueva);
+    setPorcentaje(porcentajeIngreso);
+    setRiesgo(nivelRiesgo);
     trackEvent('premium_click', { precio: 9.99 });
     trackEvent('simulacion_completada', { 
       riesgo: nivelRiesgo,
       cuota: totalCuota,
       porcentaje: porcentajeIngreso 
     });
-    setCuota(cuotaNueva);
-    setPorcentaje(porcentajeIngreso);
-    setRiesgo(nivelRiesgo);
   };
 
   const labelRiesgo =
